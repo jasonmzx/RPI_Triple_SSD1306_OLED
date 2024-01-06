@@ -23,7 +23,6 @@ class Screen(ABC):
         self._DESTROY = threading.Event() #This event tells the thread if it's destroyed or not
         self._THREAD  = threading.Thread(target=self._refresh_loop, daemon=True) 
 
-        self._THREAD.start()
 
     def show(self): 
         

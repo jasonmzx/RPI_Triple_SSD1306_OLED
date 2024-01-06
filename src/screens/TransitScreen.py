@@ -12,6 +12,7 @@ class TransitScreen(Screen):
         super().__init__(display, refresh_rate)
 
         self.BUS_TRACKER = GTFS_Bus_Tracker(GTFS_URL, TIME_ZONE, STOP_ID, ROUTE_ID)
+        self._THREAD.start()
 
     def drawImage(self):
 
