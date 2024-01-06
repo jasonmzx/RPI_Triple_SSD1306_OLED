@@ -46,6 +46,7 @@ class Screen(ABC):
 
     def _refresh_loop(self):
         while not self._DESTROY.is_set():
+            print("Thread Working")
             self.drawImage()
             time.sleep(self.refresh_rate)
     
