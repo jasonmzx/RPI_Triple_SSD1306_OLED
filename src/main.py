@@ -14,7 +14,7 @@ def main():
     display1 = hw_controller.spawnScreenAt(1)
     display2 = hw_controller.spawnScreenAt(2)
 
-    transit_display = TransitScreen(display1, GTFS_Source, "America/Toronto", "2242:1", "900")
+    transit_display = TransitScreen(display1, 10, GTFS_Source, "America/Toronto", "2242:1", "900")
     transit_display.drawImage()
     transit_display.show()
 
