@@ -3,10 +3,6 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 import requests
 
-# TODO: Put these in .env
-GTFS_Source = "https://drtonline.durhamregiontransit.com/gtfsrealtime/TripUpdates"
-
-
 class Formatted_Arrival_Entry:
     ARRIVAL_UNIX: int = None
     FORMATTED_ARRIVAL: str = None
@@ -46,6 +42,8 @@ class GTFS_Bus_Tracker:
         self.STOP_ID = stop_id
         self.ROUTE_ID = route_id
 
+
+    #TODO: Potentially make this async
     def refreshArrivals(self):
         
         time_zone = ZoneInfo(self.T_ZONE)
@@ -95,7 +93,3 @@ class GTFS_Bus_Tracker:
 
         for x in self.Arrivals:
             print(x)
-
-
-bustrack = GTFS_Bus_Tracker(GTFS_Source,"America/Toronto", "2242:1", "920")
-bustrack.refreshArrivals()
