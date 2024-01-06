@@ -50,5 +50,6 @@ class Screen(ABC):
             time.sleep(self.refresh_rate)
     
     def __del__(self):
+        print("DESTROYING THREAD...")
         self._DESTROY_THREAD()
         self.clear_screen()
