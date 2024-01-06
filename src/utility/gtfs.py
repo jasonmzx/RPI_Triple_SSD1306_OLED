@@ -57,15 +57,16 @@ class GTFS_Bus_Tracker:
         for entity in feed.entity:
             if entity.HasField("trip_update"):
                 for stop_time_update in entity.trip_update.stop_time_update:
-                    if stop_time_update.stop_id == self.STOP_ID:
+
+                    route_id = ( #Initially Pull-in Route ID as we'll be comparing on this field aswell
+                        entity.trip_update.trip.route_id
+                        if entity.trip_update.trip
+                        else "N/A"
+                    )
+
+                    if stop_time_update.stop_id == self.STOP_ID and route_id == self.ROUTE_ID:
                         
                         arrival_time_unix = stop_time_update.arrival.time
-                        
-                        route_id = (
-                            entity.trip_update.trip.route_id
-                            if entity.trip_update.trip
-                            else "N/A"
-                        )
                         
                         vehicle_id = (
                             entity.trip_update.vehicle.id
@@ -91,5 +92,6 @@ class GTFS_Bus_Tracker:
             if datetime.fromtimestamp(arrival.ARRIVAL_UNIX, time_zone) > current_time
         ]
 
+        print("____DEBUG PRINTING____")
         for x in self.Arrivals:
             print(x)
