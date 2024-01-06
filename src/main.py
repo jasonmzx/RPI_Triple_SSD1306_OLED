@@ -16,5 +16,11 @@ def main():
 
     transit_display = TransitScreen(display1, 10, GTFS_Source, "America/Toronto", "2242:1", "900")
 
+    try:
+        while True:
+            time.sleep(1)  # Sleep for a short time to prevent high CPU usage
+    except KeyboardInterrupt:
+        print("Program terminated by user")
+
 if __name__ == "__main__":
     main()
