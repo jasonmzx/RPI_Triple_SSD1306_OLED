@@ -1,6 +1,6 @@
 
-from . import HardwareController
-from .screens import TransitScreen
+import HardwareController
+from screens import TransitScreen
 
 def main():
     
