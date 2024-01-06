@@ -12,8 +12,8 @@ class TransitScreen(Screen):
         # TODO: Put these in .env
         GTFS_Source = "https://drtonline.durhamregiontransit.com/gtfsrealtime/TripUpdates"
 
-        BUS_TRACKER = GTFS_Bus_Tracker(GTFS_Source,"America/Toronto", "2242:1", "920")
-        BUS_TRACKER.refreshArrivals()
+        self.BUS_TRACKER = GTFS_Bus_Tracker(GTFS_Source,"America/Toronto", "2242:1", "920")
+        self.BUS_TRACKER.refreshArrivals()
 
     def drawImage(self):
         self.draw.rectangle((0, 0, self.width, self.height), outline=0, fill=0)
