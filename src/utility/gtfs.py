@@ -46,6 +46,8 @@ class GTFS_Bus_Tracker:
     #TODO: Potentially make this async
     def refreshArrivals(self):
         
+        self.Arrivals = [] #* CLEAR Arrivals for new entries
+        
         time_zone = ZoneInfo(self.T_ZONE)
 
         # * 1. ==== Request & Get Raw GTFS Realtime Data, and Decode to Object

@@ -1,4 +1,4 @@
-
+import time
 from HardwareController import HardwareController
 from screens.TransitScreen import TransitScreen
 
@@ -14,11 +14,13 @@ def main():
     display1 = hw_controller.spawnScreenAt(1)
     display2 = hw_controller.spawnScreenAt(2)
 
-    transit_display = TransitScreen(display1, 10, GTFS_Source, "America/Toronto", "2242:1", "900")
+    transit_display = TransitScreen(display1, 60, GTFS_Source, "America/Toronto", "2242:1", "900")
+
+    # Keep Lifetime of main function
 
     try:
         while True:
-            time.sleep(1)  # Sleep for a short time to prevent high CPU usage
+            time.sleep(1)  
     except KeyboardInterrupt:
         print("Program terminated by user")
 
