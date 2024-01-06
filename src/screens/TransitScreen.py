@@ -14,5 +14,6 @@ class TransitScreen(Screen):
         bustrack.refreshArrivals()
 
     def drawImage(self):
-
+        self.draw.rectangle((0, 0, self.width, self.height), outline=0, fill=0)
+        self.draw.text((0, 0 - 7), "USR: Jason. M", font=self.font, fill=255)
         self.show()
