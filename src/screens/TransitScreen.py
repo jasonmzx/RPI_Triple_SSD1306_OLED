@@ -6,10 +6,10 @@ class TransitScreen(Screen):
 
     BUS_TRACKER = None
     
-    #`display` is for Screen Class, everything else is for GTFS configuration
+    #`display` & `refresh_rate` is for Screen Class, everything else is for GTFS configuration
     
-    def __init__(self, display, GTFS_URL, TIME_ZONE, STOP_ID, ROUTE_ID):
-        super().__init__(display)
+    def __init__(self, display, refresh_rate, GTFS_URL, TIME_ZONE, STOP_ID, ROUTE_ID):
+        super().__init__(display, refresh_rate)
 
         self.BUS_TRACKER = GTFS_Bus_Tracker(GTFS_URL, TIME_ZONE, STOP_ID, ROUTE_ID)
 
