@@ -22,7 +22,7 @@ class HardwareController:
             raise ValueError("TCA9548A Module only has 8 I2C slots! (0 - 7)")
 
         hardware_screen = adafruit_ssd1306.SSD1306_I2C(width, height, self.I2C_MULTIPLEXER[slot_number])
-        self.I2C_Screens[slot_number] = hardware_screen
+        #self.I2C_Screens[slot_number] = hardware_screen
         
         return hardware_screen
 

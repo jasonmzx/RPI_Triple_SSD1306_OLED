@@ -1,5 +1,5 @@
-from .. import Screen
-from ..utility.gtfs import GTFS_Bus_Tracker
+from Screen import Screen
+from utility.gtfs import GTFS_Bus_Tracker
 from PIL import Image, ImageDraw, ImageFont
 
 class TransitScreen(Screen):

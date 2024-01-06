@@ -1,5 +1,5 @@
 
-import HardwareController
+from HardwareController import HardwareController
 from screens import TransitScreen
 
 def main():
