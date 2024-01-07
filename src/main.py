@@ -8,7 +8,8 @@ def SHUTDOWN_Handler(displays):
     print("=== Cleaning up Display Threads ===")
     for display in displays:
         display.DESTROY_THREAD()
-    print("Shuting down...")
+    print("Shuting down & Exiting...")
+    exit(0)
 
 def main():
     

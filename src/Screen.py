@@ -46,8 +46,16 @@ class Screen(ABC):
 
 
     def _refresh_loop(self):
+
+        second_counter = 0
+
         while not self._DESTROY.is_set():
-            print("Thread Working")
-            self.drawImage()
-            time.sleep(self.refresh_rate)
+    
+            if second_counter == self.refresh_rate:
+                self.drawImage()
+                second_counter = 0
+            else:
+                second_counter += 1
+
+            time.sleep(1)
         print("Refresh loop has terminated...")
