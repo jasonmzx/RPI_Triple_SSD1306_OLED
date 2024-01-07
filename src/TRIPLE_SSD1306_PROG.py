@@ -2,6 +2,7 @@ import signal
 import time
 from HardwareController import HardwareController
 from screens.TransitScreen import TransitScreen
+from screens.ModeScreen import ModeScreen
 
 
 def SHUTDOWN_Handler(displays):
@@ -23,11 +24,11 @@ def main():
     display1 = hw_controller.spawnScreenAt(1)
     display2 = hw_controller.spawnScreenAt(2)
 
-    transit_display = TransitScreen(display1, 30, GTFS_Source, "America/Toronto", "2242:1", "900")
-    transit_display2 = TransitScreen(display2, 30, GTFS_Source, "America/Toronto", "2242:1", "900")
-    transit_display3 = TransitScreen(display0, 10, GTFS_Source, "America/Toronto", "2242:1", "920")
+    left_disp   = ModeScreen(display1, 10, "America/Toronto")
+    middle_disp = TransitScreen(display2, 20, GTFS_Source, "America/Toronto", "2242:1", "920")
+    right_disp  = TransitScreen(display0, 20, GTFS_Source, "America/Toronto", "2242:1", "900")
 
-    active_displays = [transit_display, transit_display2, transit_display3]
+    active_displays = [left_disp, middle_disp, right_disp]
 
     #* Upon Termination or Interrupt Signals, Initiate Shutdown
 
