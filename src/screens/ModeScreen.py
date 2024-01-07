@@ -32,6 +32,6 @@ class ModeScreen(Screen):
         time_str = current_time.strftime("%I:%M %p")  # Format: "10:22 AM"
         tz_name = current_time.tzname()  # Get timezone abbreviation
 
-        self.draw.text((0, 30), f"{time_str}     {tz_name}", font=self.font, fill=255)
+        self.draw.text((0, 30), f"{time_str}       {tz_name}", font=self.font, fill=255)
 
         self.show()
