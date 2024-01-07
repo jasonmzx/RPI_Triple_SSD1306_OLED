@@ -41,7 +41,7 @@ class TransitScreen(Screen):
         seconds_until_arrival = int(time_diff.total_seconds() % 60)
 
         # Draw formatted arrival and time until arrival
-        self.draw.text((0, 13*(idx+1)), f"{Elm.FORMATTED_ARRIVAL} - {minutes_until_arrival}m {seconds_until_arrival}s", font=self.font, fill=255)
+        self.draw.text((0, 14*(idx+1)), f"{Elm.FORMATTED_ARRIVAL} - {minutes_until_arrival}m {seconds_until_arrival}s", font=self.font, fill=255)
         return 0
 
     def drawImage(self):
@@ -49,13 +49,13 @@ class TransitScreen(Screen):
         self.BUS_TRACKER.refreshArrivals()
 
         self.draw.rectangle((0, 0, self.width, self.height), outline=0, fill=0)
-        self.draw.text((0, 0), f"NEXT: {self.BUS_TRACKER.ROUTE_ID}  IN: ", font=self.font, fill=255)
+        self.draw.text((0, 0), f"{self.BUS_TRACKER.ROUTE_ID} Arrivals:      IN:", font=self.font, fill=255)
         
         if self.BUS_TRACKER.Arrivals:
             self._drawArrivalEntry(0)
             self._drawArrivalEntry(1)
+            self._drawArrivalEntry(2)
         else:
             self.draw.text((0, 13), f"No active routes...", font=self.font, fill=255)
-
 
         self.show()

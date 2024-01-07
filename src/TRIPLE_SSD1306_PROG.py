@@ -25,8 +25,9 @@ def main():
 
     transit_display = TransitScreen(display1, 30, GTFS_Source, "America/Toronto", "2242:1", "900")
     transit_display2 = TransitScreen(display2, 30, GTFS_Source, "America/Toronto", "2242:1", "900")
+    transit_display3 = TransitScreen(display0, 10, GTFS_Source, "America/Toronto", "2242:1", "920")
 
-    active_displays = [transit_display, transit_display2]
+    active_displays = [transit_display, transit_display2, transit_display3]
 
     #* Upon Termination or Interrupt Signals, Initiate Shutdown
 
