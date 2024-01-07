@@ -7,12 +7,14 @@ from PIL import ImageFont
 class ModeScreen(Screen):
 
     TIME_ZONE = None
+    HEADING_STR : str = ""
 
-    def __init__(self,display,refresh_rate, TIME_ZONE_STR):
+    def __init__(self,display,refresh_rate, HEADING_STR, TIME_ZONE_STR):
 
         super().__init__(display, refresh_rate,)
 
         self.TIME_ZONE = ZoneInfo(TIME_ZONE_STR) 
+        self.HEADING_STR = HEADING_STR
 
         self._THREAD.start() # Start the Thread running Refresh Loop 
 
@@ -20,10 +22,10 @@ class ModeScreen(Screen):
         
         self.draw.rectangle((0, 0, self.width, self.height), outline=0, fill=0)
         
-        self.font = ImageFont.load_default(size=24)
-        self.draw.text((0, 0), "BUS TRACK MODE", font=self.font, fill=255)
+        self.font = ImageFont.load_default(size=18)
+        self.draw.text((0, 1), self.HEADING_STR, font=self.font, fill=255)
         
-        self.font = ImageFont.load_default(size=14)
+        self.font = ImageFont.load_default(size=16)
         
         # Get current time and format it
         current_time = datetime.now(self.TIME_ZONE)

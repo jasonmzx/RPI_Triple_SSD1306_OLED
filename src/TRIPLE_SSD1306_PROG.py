@@ -24,7 +24,7 @@ def main():
     display1 = hw_controller.spawnScreenAt(1)
     display2 = hw_controller.spawnScreenAt(2)
 
-    left_disp   = ModeScreen(display2, 10, "America/Toronto")
+    left_disp   = ModeScreen(display2, 10, "TRANSIT MODE", "America/Toronto")
     middle_disp = TransitScreen(display1, 20, GTFS_Source, "America/Toronto", "2242:1", "920")
     right_disp  = TransitScreen(display0, 20, GTFS_Source, "America/Toronto", "2242:1", "900")
 
