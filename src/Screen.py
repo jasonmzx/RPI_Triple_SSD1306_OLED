@@ -51,16 +51,18 @@ class Screen(ABC):
         #! Is because it takes forever for them to .join() upon Destruction of threads
         #! Now the OLED Screens have to "wait" maximum 1 second to turn off, upon termination of program
 
+        TICK_DURATION = 0.5
+
         second_counter = self.refresh_rate
 
         while not self._DESTROY.is_set():
     
             if second_counter == self.refresh_rate:
                 self.drawImage()
-                second_counter = 1
+                second_counter =  TICK_DURATION
             else:
-                second_counter += 1
+                second_counter += TICK_DURATION
 
-            time.sleep(1)
+            time.sleep(TICK_DURATION)
         
         print(">> Refresh Loop has terminated...")
