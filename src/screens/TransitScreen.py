@@ -22,27 +22,38 @@ class TransitScreen(Screen):
 
         self._THREAD.start() # Start the Thread running Refresh Loop 
 
+
+    #* Helper Draw FN:
+    def _drawArrivalEntry(self, idx):
+
+        Elm = self.BUS_TRACKER.Arrivals[idx]
+
+        if Elm is None: #! Basic Assertion for Elm
+            return 1
+
+        # Convert arrival time and current time to aware datetime objects
+        arrival_time = datetime.fromtimestamp(Elm.ARRIVAL_UNIX, self.TIME_ZONE)
+        current_time = datetime.now(self.TIME_ZONE)
+
+        # Calculate time difference in minutes and seconds
+        time_diff = arrival_time - current_time
+        minutes_until_arrival = int(time_diff.total_seconds() / 60)
+        seconds_until_arrival = int(time_diff.total_seconds() % 60)
+
+        # Draw formatted arrival and time until arrival
+        self.draw.text((0, 13*(idx+1)), f"{Elm.FORMATTED_ARRIVAL} - {minutes_until_arrival}m {seconds_until_arrival}s", font=self.font, fill=255)
+        return 0
+
     def drawImage(self):
         
         self.BUS_TRACKER.refreshArrivals()
 
         self.draw.rectangle((0, 0, self.width, self.height), outline=0, fill=0)
-        self.draw.text((0, 0), f"NEXT: {self.BUS_TRACKER.ROUTE_ID}", font=self.font, fill=255)
+        self.draw.text((0, 0), f"NEXT: {self.BUS_TRACKER.ROUTE_ID}  IN: ", font=self.font, fill=255)
         
         if self.BUS_TRACKER.Arrivals:
-            Elm0 = self.BUS_TRACKER.Arrivals[0]
-            
-            # Convert arrival time and current time to aware datetime objects
-            arrival_time = datetime.fromtimestamp(Elm0.ARRIVAL_UNIX, self.TIME_ZONE)
-            current_time = datetime.now(self.TIME_ZONE)
-
-            # Calculate time difference in minutes and seconds
-            time_diff = arrival_time - current_time
-            minutes_until_arrival = int(time_diff.total_seconds() / 60)
-            seconds_until_arrival = int(time_diff.total_seconds() % 60)
-
-            # Draw formatted arrival and time until arrival
-            self.draw.text((0, 13), f"{Elm0.FORMATTED_ARRIVAL} | In {minutes_until_arrival} M {seconds_until_arrival} S", font=self.font, fill=255)
+            self._drawArrivalEntry(0)
+            self._drawArrivalEntry(1)
         else:
             self.draw.text((0, 13), f"No active routes...", font=self.font, fill=255)
 
