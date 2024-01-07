@@ -24,9 +24,9 @@ def main():
     display1 = hw_controller.spawnScreenAt(1)
     display2 = hw_controller.spawnScreenAt(2)
 
+    left_disp   = ModeScreen(display2, 10, "America/Toronto")
+    middle_disp = TransitScreen(display1, 20, GTFS_Source, "America/Toronto", "2242:1", "920")
     right_disp  = TransitScreen(display0, 20, GTFS_Source, "America/Toronto", "2242:1", "900")
-    middle_disp =  TransitScreen(display2, 20, GTFS_Source, "America/Toronto", "2242:1", "920")
-    left_disp   = ModeScreen(display1, 10, "America/Toronto")
 
     active_displays = [left_disp, middle_disp, right_disp]
 
