@@ -50,4 +50,4 @@ class Screen(ABC):
             print("Thread Working")
             self.drawImage()
             time.sleep(self.refresh_rate)
-    
+        print("Refresh loop has terminated...")
