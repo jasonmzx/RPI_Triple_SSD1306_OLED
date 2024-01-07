@@ -34,22 +34,19 @@ class GTFS_Bus_Tracker:
     STOP_ID: str = None
     ROUTE_ID: str = None
     GTFS_URL: str = None
-    T_ZONE: str = None
+    TIME_ZONE: object = None
 
-    def __init__(self, gtfs_url, time_zone, stop_id, route_id):
+    def __init__(self, gtfs_url, time_zone_object, stop_id, route_id):
         self.GTFS_URL = gtfs_url
-        self.T_ZONE = time_zone
+        self.TIME_ZONE = time_zone_object
         self.STOP_ID = stop_id
         self.ROUTE_ID = route_id
-
 
     #TODO: Potentially make this async
     def refreshArrivals(self):
         
         self.Arrivals = [] #* CLEAR Arrivals for new entries
         
-        time_zone = ZoneInfo(self.T_ZONE)
-
         # * 1. ==== Request & Get Raw GTFS Realtime Data, and Decode to Object
         feed = gtfs_realtime_pb2.FeedMessage()
         response = requests.get(self.GTFS_URL)
@@ -86,12 +83,12 @@ class GTFS_Bus_Tracker:
         self.Arrivals.sort(key=lambda entry: entry.ARRIVAL_UNIX)
 
         # * 4. ==== Manully Remove any entries that have passed by | Compare to Eastern Standard Time | Toronto, ON (GMT-5)
-        current_time = datetime.now(time_zone)
+        current_time = datetime.now(self.TIME_ZONE)
 
         self.Arrivals = [
             arrival
             for arrival in self.Arrivals
-            if datetime.fromtimestamp(arrival.ARRIVAL_UNIX, time_zone) > current_time
+            if datetime.fromtimestamp(arrival.ARRIVAL_UNIX, self.TIME_ZONE) > current_time
         ]
 
         print("____DEBUG PRINTING____")

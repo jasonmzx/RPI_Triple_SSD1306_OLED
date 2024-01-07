@@ -40,9 +40,11 @@ class Screen(ABC):
 
     #* Threading Functionality (Pertaining to Refresh of Screen) 
 
-    def _DESTROY_THREAD(self):
+    def DESTROY_THREAD(self):
         self._DESTROY.set()
         self._THREAD.join()
+        self.clear_screen()
+
 
     def _refresh_loop(self):
         while not self._DESTROY.is_set():
@@ -50,7 +52,3 @@ class Screen(ABC):
             self.drawImage()
             time.sleep(self.refresh_rate)
     
-    def __del__(self):
-        print("DESTROYING THREAD...")
-        self._DESTROY_THREAD()
-        self.clear_screen()

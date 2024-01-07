@@ -24,5 +24,8 @@ def main():
     except KeyboardInterrupt:
         print("Program terminated by user")
 
+    #* === Cleanup Screens ===
+        transit_display.DESTROY_THREAD()
+
 if __name__ == "__main__":
     main()
