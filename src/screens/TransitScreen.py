@@ -44,5 +44,9 @@ class TransitScreen(Screen):
             # Draw formatted arrival and time until arrival
             self.draw.text((0, 13), f"{Elm0.FORMATTED_ARRIVAL} R: {Elm0.ROUTE_ID}", font=self.font, fill=255)
             self.draw.text((0, 26), f"In {minutes_until_arrival} min {seconds_until_arrival} sec", font=self.font, fill=255)
-        
+        else:
+            self.draw.text((0, 13), f"No active routes...", font=self.font, fill=255)
+            self.draw.text((0, 26), f"No routes...", font=self.font, fill=130)
+
+
         self.show()
